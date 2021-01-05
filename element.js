@@ -1,8 +1,8 @@
 class Element {
-    constructor(x, y, size) {
+    constructor(x, y, size, parent) {
         this.loc = createVector(x, y);
         this.width = size;
-        this.vel = createVector(0, -size);
+        this.parent = parent;
     }
 
     show() {
