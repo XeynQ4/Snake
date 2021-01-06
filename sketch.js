@@ -3,6 +3,7 @@ const width = 600;
 // const height = 500;
 const sqrSize = 20;
 const gridSize = width / sqrSize;
+const frameSpeed = 20;
 let vel;
 let score = 0;
 let snake = [];
@@ -11,14 +12,14 @@ let head;
 let speed = 1;
 let appleExists = false;
 let apple;
-let index = 0
+let index = 0;
 
 function setup() {
     createCanvas(width, width);
     vel = createVector(0, -sqrSize);
 
     snake[0] =
-        new Element(width / 2, width / 2, sqrSize, null);
+        new Element(width / 2, width / 2, sqrSize);
     head = snake[0];
     createApple();
 }
@@ -34,7 +35,7 @@ function draw() {
 
     if (index === 0) {
         showSnake();
-        index = 20;
+        index = frameSpeed;
     } else {
         for (let i = 0; i < snake.length; i++) {
             snake[i].show();
@@ -76,7 +77,8 @@ function createApple() {
 
 function appleEaten() {
     if (head.loc.x == apple.loc.x && head.loc.y == apple.loc.y) {
-
+        snake.push(new Element(apple.loc.x, apple.loc.y, sqrSize));
+        score++;
         appleExists = false;
     }
 }
